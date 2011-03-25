@@ -1,0 +1,9 @@
+grammar org.mcj.karel.Karel with org.eclipse.xtext.common.Terminals
+
+generate karel "http://www.mcj.org/karel/Karel"
+
+Model:
+	greetings+=Greeting*;
+	
+Greeting:
+	'Hello' name=ID '!';

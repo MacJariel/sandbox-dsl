@@ -1,0 +1,4 @@
+import org::mcj::karel::karel;
+
+sortedGreetings(Model this) :
+	this.greetings.sortBy(g|g.name.toLowerCase());
