@@ -2,8 +2,87 @@ grammar org.mcj.karel.Karel with org.eclipse.xtext.common.Terminals
 
 generate karel "http://www.mcj.org/karel/Karel"
 
-Model:
-	greetings+=Greeting*;
-	
-Greeting:
-	'Hello' name=ID '!';
+Program:
+	'BEGIN-PROGRAM'
+	(initSection=InitSection)?
+	(userDefinedCommands+=UserDefinedCommand)*
+	(main=Main)
+	'END-PROGRAM';
+
+InitSection:
+	'BEGIN-INIT'
+	(initCommands+=InitCommand)+
+	'END-INIT';
+
+InitCommand:
+	InitPositionCommand | InitHeadingCommand | InitBoardSizeCommand;
+
+InitPositionCommand:
+	'position' x=INT ',' y=INT ';';
+
+InitHeadingCommand:
+	'heading' heading=HeadingKind ';';
+
+InitBoardSizeCommand:
+	'boardSize' width=INT ',' height=INT ';';
+
+enum HeadingKind:
+	NORTH | SOUTH | WEST | EAST;
+
+UserDefinedCommand:
+	(doc=DocumentationComment)?
+	'DEFINE COMMAND' name=STRING 'AS'
+	'BEGIN'
+	(statements+=Statement)*
+	'END';
+
+Main:
+	{Main}
+	'BEGIN-MAIN'
+	(statements+=Statement)*
+	'END-MAIN';
+
+Statement:
+	IfStatement | IterateStatement | WhileStatement | CommandStatement | UserDefinedCommandStatement;
+
+UserDefinedCommandStatement:
+	command=[UserDefinedCommand] ';';
+
+IfStatement:
+	'IF' '(' condition=ConditionExpr ')' '{'
+	(statements+=Statement)*
+	'}'
+	('ELSE' '{'
+	(elseStatements+=Statement)*
+	'}')?;
+
+IterateStatement:
+	'ITERATE' times=INT 'TIMES' '{'
+	statements+=Statement
+	'}';
+
+WhileStatement:
+	'WHILE' '(' condition=ConditionExpr ')' '{'
+	statements+=Statement
+	'}';
+
+DocumentationComment:
+	'@(' text=STRING ')';
+
+CommandStatement:
+	kind=CommandKind ";";
+
+enum CommandKind:
+	MOVE="move" |
+	TURNLEFT="turn" |
+	TURNON="turnOn" |
+	TURNOFF="turnOff" |
+	PUT="put" |
+	GET="get";
+
+ConditionExpr:
+	negation?='!' expr=ConditionKind;
+
+enum ConditionKind:
+	WALL_AHEAD |
+	MARKED_PLACE;
