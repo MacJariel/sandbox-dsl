@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.mcj.karel/src-gen"
+    editDirectory="/org.mcj.karel.edit/src" editorDirectory="/org.mcj.karel.editor/src"
+    modelPluginID="org.mcj.karel" forceOverwrite="true" modelName="Karel" updateClasspath="false"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" complianceLevel="5.0"
+    copyrightFields="false" editPluginID="org.mcj.karel.edit" editorPluginID="org.mcj.karel.editor">
+  <genPackages prefix="Karel" basePackage="org.mcj.karel" disposableProviderFactory="true"
+      ecorePackage="Karel.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Karel.ecore#//HeadingKind">
+      <genEnumLiterals ecoreEnumLiteral="Karel.ecore#//HeadingKind/NORTH"/>
+      <genEnumLiterals ecoreEnumLiteral="Karel.ecore#//HeadingKind/SOUTH"/>
+      <genEnumLiterals ecoreEnumLiteral="Karel.ecore#//HeadingKind/WEST"/>
+      <genEnumLiterals ecoreEnumLiteral="Karel.ecore#//HeadingKind/EAST"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Karel.ecore#//CommandKind">
+      <genEnumLiterals ecoreEnumLiteral="Karel.ecore#//CommandKind/MOVE"/>
+      <genEnumLiterals ecoreEnumLiteral="Karel.ecore#//CommandKind/TURNLEFT"/>
+      <genEnumLiterals ecoreEnumLiteral="Karel.ecore#//CommandKind/TURNON"/>
+      <genEnumLiterals ecoreEnumLiteral="Karel.ecore#//CommandKind/TURNOFF"/>
+      <genEnumLiterals ecoreEnumLiteral="Karel.ecore#//CommandKind/PUT"/>
+      <genEnumLiterals ecoreEnumLiteral="Karel.ecore#//CommandKind/GET"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Karel.ecore#//ConditionKind">
+      <genEnumLiterals ecoreEnumLiteral="Karel.ecore#//ConditionKind/WALL_AHEAD"/>
+      <genEnumLiterals ecoreEnumLiteral="Karel.ecore#//ConditionKind/MARKED_PLACE"/>
+    </genEnums>
+    <genClasses ecoreClass="Karel.ecore#//Program">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Karel.ecore#//Program/initSection"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Karel.ecore#//Program/userDefinedCommands"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Karel.ecore#//Program/main"/>
+    </genClasses>
+    <genClasses ecoreClass="Karel.ecore#//InitSection">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Karel.ecore#//InitSection/initCommands"/>
+    </genClasses>
+    <genClasses ecoreClass="Karel.ecore#//InitCommand"/>
+    <genClasses ecoreClass="Karel.ecore#//InitPositionCommand">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Karel.ecore#//InitPositionCommand/x"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Karel.ecore#//InitPositionCommand/y"/>
+    </genClasses>
+    <genClasses ecoreClass="Karel.ecore#//InitHeadingCommand">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Karel.ecore#//InitHeadingCommand/heading"/>
+    </genClasses>
+    <genClasses ecoreClass="Karel.ecore#//InitBoardSizeCommand">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Karel.ecore#//InitBoardSizeCommand/width"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Karel.ecore#//InitBoardSizeCommand/height"/>
+    </genClasses>
+    <genClasses ecoreClass="Karel.ecore#//UserDefinedCommand">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Karel.ecore#//UserDefinedCommand/doc"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Karel.ecore#//UserDefinedCommand/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Karel.ecore#//UserDefinedCommand/statements"/>
+    </genClasses>
+    <genClasses ecoreClass="Karel.ecore#//Main">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Karel.ecore#//Main/statements"/>
+    </genClasses>
+    <genClasses ecoreClass="Karel.ecore#//Statement"/>
+    <genClasses ecoreClass="Karel.ecore#//UserDefinedCommandStatement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Karel.ecore#//UserDefinedCommandStatement/command"/>
+    </genClasses>
+    <genClasses ecoreClass="Karel.ecore#//IfStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Karel.ecore#//IfStatement/condition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Karel.ecore#//IfStatement/statements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Karel.ecore#//IfStatement/elseStatements"/>
+    </genClasses>
+    <genClasses ecoreClass="Karel.ecore#//IterateStatement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Karel.ecore#//IterateStatement/times"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Karel.ecore#//IterateStatement/statements"/>
+    </genClasses>
+    <genClasses ecoreClass="Karel.ecore#//WhileStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Karel.ecore#//WhileStatement/condition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Karel.ecore#//WhileStatement/statements"/>
+    </genClasses>
+    <genClasses ecoreClass="Karel.ecore#//DocumentationComment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Karel.ecore#//DocumentationComment/text"/>
+    </genClasses>
+    <genClasses ecoreClass="Karel.ecore#//CommandStatement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Karel.ecore#//CommandStatement/kind"/>
+    </genClasses>
+    <genClasses ecoreClass="Karel.ecore#//ConditionExpr">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Karel.ecore#//ConditionExpr/negation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Karel.ecore#//ConditionExpr/expr"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

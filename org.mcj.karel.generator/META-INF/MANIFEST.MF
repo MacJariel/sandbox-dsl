@@ -13,4 +13,4 @@ Require-Bundle: org.mcj.karel;visibility:=reexport,
  org.eclipse.emf.mwe.utils;visibility:=reexport,
  org.eclipse.xtend.typesystem.emf;visibility:=reexport
 Import-Package: org.apache.log4j
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

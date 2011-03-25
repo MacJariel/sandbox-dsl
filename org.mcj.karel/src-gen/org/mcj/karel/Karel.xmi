@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:xtext="http://www.eclipse.org/2008/Xtext">
+  <xtext:Grammar name="org.mcj.karel.Karel" usedGrammars="/1">
+    <metamodelDeclarations xsi:type="xtext:GeneratedMetamodel" name="karel">
+      <ePackage href="http://www.mcj.org/karel/Karel#/"/>
+    </metamodelDeclarations>
+    <rules xsi:type="xtext:ParserRule" name="Program">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.mcj.org/karel/Karel#//Program"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="BEGIN-PROGRAM"/>
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="initSection" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.1"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" cardinality="*" feature="userDefinedCommands" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.7"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="main" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.8"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="END-PROGRAM"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="InitSection">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.mcj.org/karel/Karel#//InitSection"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="BEGIN-INIT"/>
+        <elements xsi:type="xtext:Assignment" cardinality="+" feature="initCommands" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.2"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="END-INIT"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="InitCommand">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.mcj.org/karel/Karel#//InitCommand"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.3"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.4"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="InitPositionCommand">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.mcj.org/karel/Karel#//InitPositionCommand"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="position"/>
+        <elements xsi:type="xtext:Assignment" feature="x" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.1"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=","/>
+        <elements xsi:type="xtext:Assignment" feature="y" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.1"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=";"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="InitHeadingCommand">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.mcj.org/karel/Karel#//InitHeadingCommand"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="heading"/>
+        <elements xsi:type="xtext:Assignment" feature="heading" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.6"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=";"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="InitBoardSizeCommand">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.mcj.org/karel/Karel#//InitBoardSizeCommand"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="boardSize"/>
+        <elements xsi:type="xtext:Assignment" feature="width" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.1"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=","/>
+        <elements xsi:type="xtext:Assignment" feature="height" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.1"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=";"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:EnumRule" name="HeadingKind">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EEnum" href="http://www.mcj.org/karel/Karel#//HeadingKind"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.mcj.org/karel/Karel#//HeadingKind/NORTH"/>
+          <literal value="NORTH"/>
+        </elements>
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.mcj.org/karel/Karel#//HeadingKind/SOUTH"/>
+          <literal value="SOUTH"/>
+        </elements>
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.mcj.org/karel/Karel#//HeadingKind/WEST"/>
+          <literal value="WEST"/>
+        </elements>
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.mcj.org/karel/Karel#//HeadingKind/EAST"/>
+          <literal value="EAST"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="UserDefinedCommand">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.mcj.org/karel/Karel#//UserDefinedCommand"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="doc" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.14"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="DEFINE COMMAND"/>
+        <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.2"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="AS"/>
+        <elements xsi:type="xtext:Keyword" value="BEGIN"/>
+        <elements xsi:type="xtext:Assignment" cardinality="*" feature="statements" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.9"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="END"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="Main">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.mcj.org/karel/Karel#//Main"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Action">
+          <type metamodel="/0/@metamodelDeclarations.0">
+            <classifier xsi:type="ecore:EClass" href="http://www.mcj.org/karel/Karel#//Main"/>
+          </type>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="BEGIN-MAIN"/>
+        <elements xsi:type="xtext:Assignment" cardinality="*" feature="statements" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.9"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="END-MAIN"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="Statement">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.mcj.org/karel/Karel#//Statement"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.11"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.12"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.13"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.15"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.10"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="UserDefinedCommandStatement">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.mcj.org/karel/Karel#//UserDefinedCommandStatement"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" feature="command" operator="=">
+          <terminal xsi:type="xtext:CrossReference">
+            <type metamodel="/0/@metamodelDeclarations.0">
+              <classifier xsi:type="ecore:EClass" href="http://www.mcj.org/karel/Karel#//UserDefinedCommand"/>
+            </type>
+            <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+          </terminal>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=";"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="IfStatement">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.mcj.org/karel/Karel#//IfStatement"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="IF"/>
+        <elements xsi:type="xtext:Keyword" value="("/>
+        <elements xsi:type="xtext:Assignment" feature="condition" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.17"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=")"/>
+        <elements xsi:type="xtext:Keyword" value="{"/>
+        <elements xsi:type="xtext:Assignment" cardinality="*" feature="statements" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.9"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="}"/>
+        <elements xsi:type="xtext:Group" cardinality="?">
+          <elements xsi:type="xtext:Keyword" value="ELSE"/>
+          <elements xsi:type="xtext:Keyword" value="{"/>
+          <elements xsi:type="xtext:Assignment" cardinality="*" feature="elseStatements" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.9"/>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value="}"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="IterateStatement">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.mcj.org/karel/Karel#//IterateStatement"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="ITERATE"/>
+        <elements xsi:type="xtext:Assignment" feature="times" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.1"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="TIMES"/>
+        <elements xsi:type="xtext:Keyword" value="{"/>
+        <elements xsi:type="xtext:Assignment" feature="statements" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.9"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="}"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="WhileStatement">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.mcj.org/karel/Karel#//WhileStatement"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="WHILE"/>
+        <elements xsi:type="xtext:Keyword" value="("/>
+        <elements xsi:type="xtext:Assignment" feature="condition" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.17"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=")"/>
+        <elements xsi:type="xtext:Keyword" value="{"/>
+        <elements xsi:type="xtext:Assignment" feature="statements" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.9"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="}"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="DocumentationComment">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.mcj.org/karel/Karel#//DocumentationComment"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="@("/>
+        <elements xsi:type="xtext:Assignment" feature="text" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.2"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=")"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="CommandStatement">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.mcj.org/karel/Karel#//CommandStatement"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" feature="kind" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.16"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=";"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:EnumRule" name="CommandKind">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EEnum" href="http://www.mcj.org/karel/Karel#//CommandKind"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.mcj.org/karel/Karel#//CommandKind/MOVE"/>
+          <literal value="move"/>
+        </elements>
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.mcj.org/karel/Karel#//CommandKind/TURNLEFT"/>
+          <literal value="turn"/>
+        </elements>
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.mcj.org/karel/Karel#//CommandKind/TURNON"/>
+          <literal value="turnOn"/>
+        </elements>
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.mcj.org/karel/Karel#//CommandKind/TURNOFF"/>
+          <literal value="turnOff"/>
+        </elements>
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.mcj.org/karel/Karel#//CommandKind/PUT"/>
+          <literal value="put"/>
+        </elements>
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.mcj.org/karel/Karel#//CommandKind/GET"/>
+          <literal value="get"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="ConditionExpr">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.mcj.org/karel/Karel#//ConditionExpr"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" feature="negation" operator="?=">
+          <terminal xsi:type="xtext:Keyword" value="!"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="expr" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.18"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:EnumRule" name="ConditionKind">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EEnum" href="http://www.mcj.org/karel/Karel#//ConditionKind"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.mcj.org/karel/Karel#//ConditionKind/WALL_AHEAD"/>
+          <literal value="WALL_AHEAD"/>
+        </elements>
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.mcj.org/karel/Karel#//ConditionKind/MARKED_PLACE"/>
+          <literal value="MARKED_PLACE"/>
+        </elements>
+      </alternatives>
+    </rules>
+  </xtext:Grammar>
+  <xtext:Grammar name="org.eclipse.xtext.common.Terminals" definesHiddenTokens="true" hiddenTokens="/1/@rules.5 /1/@rules.3 /1/@rules.4">
+    <metamodelDeclarations xsi:type="xtext:ReferencedMetamodel" alias="ecore">
+      <ePackage href="http://www.eclipse.org/emf/2002/Ecore#/"/>
+    </metamodelDeclarations>
+    <rules xsi:type="xtext:TerminalRule" name="ID">
+      <type metamodel="/1/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" cardinality="?" value="^"/>
+        <elements xsi:type="xtext:Alternatives">
+          <elements xsi:type="xtext:CharacterRange">
+            <left value="a"/>
+            <right value="z"/>
+          </elements>
+          <elements xsi:type="xtext:CharacterRange">
+            <left value="A"/>
+            <right value="Z"/>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value="_"/>
+        </elements>
+        <elements xsi:type="xtext:Alternatives" cardinality="*">
+          <elements xsi:type="xtext:CharacterRange">
+            <left value="a"/>
+            <right value="z"/>
+          </elements>
+          <elements xsi:type="xtext:CharacterRange">
+            <left value="A"/>
+            <right value="Z"/>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value="_"/>
+          <elements xsi:type="xtext:CharacterRange">
+            <left value="0"/>
+            <right value="9"/>
+          </elements>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:TerminalRule" name="INT">
+      <type metamodel="/1/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      </type>
+      <alternatives xsi:type="xtext:CharacterRange" cardinality="+">
+        <left value="0"/>
+        <right value="9"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:TerminalRule" name="STRING">
+      <type metamodel="/1/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:Group">
+          <elements xsi:type="xtext:Keyword" value="&quot;"/>
+          <elements xsi:type="xtext:Alternatives" cardinality="*">
+            <elements xsi:type="xtext:Group">
+              <elements xsi:type="xtext:Keyword" value="\"/>
+              <elements xsi:type="xtext:Alternatives">
+                <elements xsi:type="xtext:Keyword" value="b"/>
+                <elements xsi:type="xtext:Keyword" value="t"/>
+                <elements xsi:type="xtext:Keyword" value="n"/>
+                <elements xsi:type="xtext:Keyword" value="f"/>
+                <elements xsi:type="xtext:Keyword" value="r"/>
+                <elements xsi:type="xtext:Keyword" value="&quot;"/>
+                <elements xsi:type="xtext:Keyword" value="'"/>
+                <elements xsi:type="xtext:Keyword" value="\"/>
+              </elements>
+            </elements>
+            <elements xsi:type="xtext:NegatedToken">
+              <terminal xsi:type="xtext:Alternatives">
+                <elements xsi:type="xtext:Keyword" value="\"/>
+                <elements xsi:type="xtext:Keyword" value="&quot;"/>
+              </terminal>
+            </elements>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value="&quot;"/>
+        </elements>
+        <elements xsi:type="xtext:Group">
+          <elements xsi:type="xtext:Keyword" value="'"/>
+          <elements xsi:type="xtext:Alternatives" cardinality="*">
+            <elements xsi:type="xtext:Group">
+              <elements xsi:type="xtext:Keyword" value="\"/>
+              <elements xsi:type="xtext:Alternatives">
+                <elements xsi:type="xtext:Keyword" value="b"/>
+                <elements xsi:type="xtext:Keyword" value="t"/>
+                <elements xsi:type="xtext:Keyword" value="n"/>
+                <elements xsi:type="xtext:Keyword" value="f"/>
+                <elements xsi:type="xtext:Keyword" value="r"/>
+                <elements xsi:type="xtext:Keyword" value="&quot;"/>
+                <elements xsi:type="xtext:Keyword" value="'"/>
+                <elements xsi:type="xtext:Keyword" value="\"/>
+              </elements>
+            </elements>
+            <elements xsi:type="xtext:NegatedToken">
+              <terminal xsi:type="xtext:Alternatives">
+                <elements xsi:type="xtext:Keyword" value="\"/>
+                <elements xsi:type="xtext:Keyword" value="'"/>
+              </terminal>
+            </elements>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value="'"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:TerminalRule" name="ML_COMMENT">
+      <type metamodel="/1/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="/*"/>
+        <elements xsi:type="xtext:UntilToken">
+          <terminal xsi:type="xtext:Keyword" value="*/"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:TerminalRule" name="SL_COMMENT">
+      <type metamodel="/1/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="//"/>
+        <elements xsi:type="xtext:NegatedToken" cardinality="*">
+          <terminal xsi:type="xtext:Alternatives">
+            <elements xsi:type="xtext:Keyword" value="&#xA;"/>
+            <elements xsi:type="xtext:Keyword" value="&#xD;"/>
+          </terminal>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="?">
+          <elements xsi:type="xtext:Keyword" cardinality="?" value="&#xD;"/>
+          <elements xsi:type="xtext:Keyword" value="&#xA;"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:TerminalRule" name="WS">
+      <type metamodel="/1/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives" cardinality="+">
+        <elements xsi:type="xtext:Keyword" value=" "/>
+        <elements xsi:type="xtext:Keyword" value="&#x9;"/>
+        <elements xsi:type="xtext:Keyword" value="&#xD;"/>
+        <elements xsi:type="xtext:Keyword" value="&#xA;"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:TerminalRule" name="ANY_OTHER">
+      <type metamodel="/1/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </type>
+      <alternatives xsi:type="xtext:Wildcard"/>
+    </rules>
+  </xtext:Grammar>
+</xmi:XMI>
