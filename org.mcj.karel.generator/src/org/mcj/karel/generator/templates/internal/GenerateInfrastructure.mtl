@@ -6,7 +6,7 @@
 [/template]
 
 [template public generateEclipsePlugin(projectName : String)]
-	[invoke('cz.cuni.mff.d3s.karel.generator.services.ProjectService.java', 'createProject(java.lang.String)', Sequence{projectName}) /]
+	[invoke('org.mcj.karel.generator.services.ProjectService.java', 'createProject(java.lang.String)', Sequence{projectName}) /]
 	[manifest(projectName, projectName, projectName) /]	
 [/template]
 
@@ -18,6 +18,6 @@ Bundle-Name: [bundleName /]
 Bundle-SymbolicName: [pluginId /]
 Bundle-Version: 1.0.0
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Require-Bundle: cz.cuni.mff.d3s.karel.core.api
+Require-Bundle: org.mcj.karel.core.api
 [/file]
 [/template]

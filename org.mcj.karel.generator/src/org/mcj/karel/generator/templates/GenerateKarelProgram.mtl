@@ -21,8 +21,8 @@
 	[file ('gen/karel/KarelProgramLauncher.java', false, 'UTF-8')]
 package gen.karel; 
 
-import cz.cuni.mff.d3s.karel.core.api.*;
-import cz.cuni.mff.d3s.karel.core.api.impl.*;
+import org.mcj.karel.core.api.*;
+import org.mcj.karel.core.api.impl.*;
 
 import gen.karel.api.*;
 import gen.karel.api.impl.*;
@@ -64,7 +64,7 @@ public class KarelProgramLauncher {
 [file ('gen/karel/api/KarelTheRobot.java', false, 'UTF-8')]
 package gen.karel.api;
 
-import cz.cuni.mff.d3s.karel.core.api.Karel;
+import org.mcj.karel.core.api.Karel;
 
 public interface KarelTheRobot extends Karel {
 
@@ -83,7 +83,7 @@ public interface KarelTheRobot extends Karel {
 package gen.karel.api.impl;
 
 import gen.karel.api.KarelTheRobot;
-import cz.cuni.mff.d3s.karel.core.api.impl.KarelImpl;
+import org.mcj.karel.core.api.impl.KarelImpl;
 
 public class KarelTheRobotImpl extends KarelImpl implements KarelTheRobot {
 
@@ -101,7 +101,7 @@ public class KarelTheRobotImpl extends KarelImpl implements KarelTheRobot {
 package gen.karel.api.impl;
 
 import gen.karel.api.*;
-import cz.cuni.mff.d3s.karel.core.api.*;
+import org.mcj.karel.core.api.*;
 
 public class KarelProgramImpl implements KarelProgram<KarelTheRobot> {
 
