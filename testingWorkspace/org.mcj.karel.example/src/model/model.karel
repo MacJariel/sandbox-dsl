@@ -1,0 +1,35 @@
+BEGIN-PROGRAM
+BEGIN-INIT
+	heading EAST; 
+	position 1,5; boardSize 10,20;
+END-INIT
+
+@("This is a simple user defined command")
+DEFINE COMMAND "simpleCmd" AS
+BEGIN
+	move;
+	move;
+END
+
+DEFINE COMMAND "turnLeft" AS
+BEGIN
+	turn;
+END
+
+DEFINE COMMAND "turnRight" AS
+BEGIN
+	turn; turn; turn;
+END
+
+BEGIN-MAIN
+	move;
+	move;
+	IF (!WALL_AHEAD) {
+		turnRight;
+	}	
+	get;
+	simpleCmd;
+	simpleCmd;
+	put;	
+END-MAIN
+END-PROGRAM
