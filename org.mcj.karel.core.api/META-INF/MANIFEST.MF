@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Karel Core API
+Bundle-SymbolicName: org.mcj.karel.core.api
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.mcj.karel.core.api,
+ org.mcj.karel.core.api.impl
