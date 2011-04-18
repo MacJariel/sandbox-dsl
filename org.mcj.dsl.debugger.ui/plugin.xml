@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="org.mcj.dsl.debugger.ui.launch.tabs.DSLDebuggerLaunchConfigurationTabGroup"
+            id="org.mcj.dsl.debugger.ui.dslDebuggerLaunchConfigurationTabGroup"
+            type="org.mcj.dsl.debugger.dslDebuggerLaunchConfigurationType">
+      </launchConfigurationTabGroup>
+   </extension>
+
+</plugin>
