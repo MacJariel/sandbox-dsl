@@ -1,20 +1,20 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Acceleo Generator Module Runtime Plug-in
-Bundle-SymbolicName: org.mcj.karel.generator
+Bundle-Name: Acceleo GenerateKarel Module IDE Plug-in
+Bundle-SymbolicName: org.mcj.karel.generator.ui;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: org.mcj.karel.generator.Activator
+Bundle-Activator: org.mcj.karel.generator.ui.Activator
 Bundle-Vendor: Eclipse Modeling Project
-Require-Bundle: org.eclipse.core.runtime,
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources, 
+ org.mcj.karel.generator,
  org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.ocl,
  org.eclipse.ocl.ecore,
  org.eclipse.acceleo.model,
- org.eclipse.acceleo.engine,
- org.eclipse.core.resources
+ org.eclipse.acceleo.engine
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Eclipse-LazyStart: true
-Export-Package: org.mcj.karel.generator.services,
- org.mcj.karel.generator.templates

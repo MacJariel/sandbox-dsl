@@ -6,7 +6,7 @@
 [/template]
 
 [template public generateEclipsePlugin(projectName : String)]
-	[invoke('org.mcj.karel.generator.services.ProjectService.java', 'createProject(java.lang.String)', Sequence{projectName}) /]
+	[invoke('org.mcj.karel.generator.services.ProjectService', 'createProject(java.lang.String)', Sequence{projectName}) /]
 	[manifest(projectName, projectName, projectName) /]	
 [/template]
 

@@ -12,7 +12,9 @@ Require-Bundle: org.mcj.karel;visibility:=reexport,
  org.eclipse.xtext.ui.shared,
  org.eclipse.ui,
  org.eclipse.xtext.builder,
- org.antlr.runtime
+ org.antlr.runtime,
+ org.eclipse.debug.core,
+ org.eclipse.debug.ui;bundle-version="3.6.3"
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.mcj.karel.ui.contentassist.antlr

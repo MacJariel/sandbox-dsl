@@ -180,5 +180,22 @@
             class="org.mcj.karel.ui.KarelExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator">
       </markerResolutionGenerator>
    </extension>
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            delegate="org.mcj.karel.ui.launch.KarelLaunchDelegate"
+            id="org.mcj.karel.ui.launch.KarelLaunchConfigurationType"
+            modes="run"
+            name="Karel Launcher">
+      </launchConfigurationType>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+      <launchConfigurationTypeImage
+            configTypeID="org.mcj.karel.ui.launch.KarelLaunchConfigurationType"
+            icon="res/icon.png"
+            id="org.mcj.karel.ui.launchConfigurationIcon">
+      </launchConfigurationTypeImage>
+   </extension>
 
 </plugin>

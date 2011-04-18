@@ -12,7 +12,7 @@
 	
 	[ p.generateKarel() /]	
 	[ p.generateLauncher() /]
-	
+	[comment p.generateInfrastructure('KarelProject') /]
 	[ p.main.generateKarelProgram() /]
 	
 [/template]
