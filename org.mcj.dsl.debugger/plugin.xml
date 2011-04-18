@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            delegate="org.mcj.dsl.debugger.launch.DSLDebuggerConfigurationDelegate"
+            id="org.mcj.dsl.debugger.dslDebuggerLaunchConfigurationType"
+            modes="debug"
+            name="DSL Debugger"
+            public="true">
+      </launchConfigurationType>
+   </extension>
+
+</plugin>
