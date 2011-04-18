@@ -1,11 +1,11 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: DSL Debugger
-Bundle-SymbolicName: org.mcj.dsl.debugger.core
+Bundle-SymbolicName: org.mcj.dsl.debugger.core;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-Activator: org.mcj.dsl.debugger.DSLDebuggerCore
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.acceleo.engine;bundle-version="3.0.0"
-Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
