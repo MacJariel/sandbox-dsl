@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: DSL Debugger
 Bundle-SymbolicName: org.mcj.dsl.debugger;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: org.mcj.dsl.debugger.Activator
+Bundle-Activator: org.mcj.dsl.debugger.DSLDebuggerPlugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.debug.core;bundle-version="3.6.0",

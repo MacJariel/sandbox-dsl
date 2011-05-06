@@ -25,6 +25,8 @@ public class DSLDebuggerLaunchConfigurationTabGroup extends
 	@Override
 	public void createTabs(ILaunchConfigurationDialog dialog, String mode) {
 		ILaunchConfigurationTab[] tabs = new ILaunchConfigurationTab[] {
+				
+				new DSLDebuggerMainTab(),
 				new JavaMainTab(),
 				new RefreshTab(),
 				new JavaArgumentsTab(),
