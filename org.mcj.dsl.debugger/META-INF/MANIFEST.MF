@@ -7,6 +7,11 @@ Bundle-Activator: org.mcj.dsl.debugger.DSLDebuggerPlugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.debug.core;bundle-version="3.6.0",
- org.eclipse.jdt.launching
+ org.eclipse.jdt.launching,
+ org.eclipse.emf.ecore
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.mcj.dsl.debugger.launch
+Import-Package: org.eclipse.acceleo.traceability,
+ org.eclipse.emf.ecore.resource,
+ org.eclipse.jdt.debug.core

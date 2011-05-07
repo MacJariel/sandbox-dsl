@@ -8,7 +8,9 @@
             id="org.mcj.dsl.debugger.dslDebuggerLaunchConfigurationType"
             modes="debug"
             name="DSL Debugger"
-            public="true">
+            public="true"
+            sourceLocatorId="org.eclipse.jdt.launching.sourceLocator.JavaSourceLookupDirector"
+            sourcePathComputerId="org.eclipse.jdt.launching.sourceLookup.javaSourcePathComputer">
       </launchConfigurationType>
    </extension>
 
