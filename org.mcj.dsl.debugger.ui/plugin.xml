@@ -9,5 +9,32 @@
             type="org.mcj.dsl.debugger.dslDebuggerLaunchConfigurationType">
       </launchConfigurationTabGroup>
    </extension>
+   <extension
+         point="org.eclipse.ui.editorActions">
+      <editorContribution
+            id="org.mcj.dsl.debugger.ui.dslEditorRulerAction"
+            targetID="org.mcj.karel.Karel">
+         <action
+               actionID="RulerDoubleClick"
+               class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate"
+               id="org.mcj.dsl.debugger.ui.doubleClickRulerAction"
+               label="Ruler line breakpoint"
+               style="push">
+         </action>
+      </editorContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <viewerContribution
+            id="org.mcj.dsl.debugger.ui.actions.rulerActions"
+            targetID="org.mcj.karel.Karel.RulerContext">
+         <action
+               class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate"
+               id="org.mcj.dsl.debugger.ui.actions.toggleBreakpointAction"
+               label="Toggle breakpoint"
+               menubarPath="debugging">
+         </action>
+      </viewerContribution>
+   </extension>
 
 </plugin>

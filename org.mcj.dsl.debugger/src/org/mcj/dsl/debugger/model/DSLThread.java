@@ -16,6 +16,11 @@ public class DSLThread extends DSLDebugElement implements IThread {
 		this.javaThread = javaThread;
 	}
 	
+	public IJavaThread getJavaThread()
+	{
+		return javaThread;
+	}
+	
 	@Override
 	public boolean canResume() {
 		return javaThread.canResume();
@@ -129,8 +134,7 @@ public class DSLThread extends DSLDebugElement implements IThread {
 
 	@Override
 	public IBreakpoint[] getBreakpoints() {
-		// TODO Auto-generated method stub
-		return null;
+		return javaThread.getBreakpoints();
 	}
 
 }

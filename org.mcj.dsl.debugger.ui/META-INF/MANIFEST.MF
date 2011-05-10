@@ -9,6 +9,9 @@ Require-Bundle: org.eclipse.ui,
  org.mcj.dsl.debugger;bundle-version="1.0.0",
  org.eclipse.debug.ui;bundle-version="3.6.3",
  org.eclipse.jdt.debug.ui,
- org.eclipse.ui.ide
+ org.eclipse.ui.ide,
+ org.eclipse.ui.workbench.texteditor;bundle-version="3.6.1",
+ org.eclipse.jface.text;bundle-version="3.6.1"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.mcj.dsl.debugger.ui.adapters

@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.debug.core.IJavaDebugTarget;
 import org.eclipse.jdt.debug.core.IJavaThread;
 import org.mcj.dsl.debugger.DSLDebuggerConstants;
+import org.mcj.dsl.debugger.breakpoints.DSLLineBreakpoint;
 
 public class DSLDebugTarget extends PlatformObject implements IDebugTarget, IDebugEventSetListener {
 
@@ -57,11 +58,12 @@ public class DSLDebugTarget extends PlatformObject implements IDebugTarget, IDeb
 		IBreakpointManager manager = DebugPlugin.getDefault().getBreakpointManager();
 		manager.addBreakpointListener(this);
 
-		IBreakpoint[] breakpoints = manager.getBreakpoints("DSLDebuggerBreakpoints"); // DSL_DEBUG_MODEL_ID
-		/*
-		 * for (IBreakpoint breakpoint: breakpoints) { if (breakpoint instanceof
-		 * DSLLineBreakpoint) { breakpointAdded(breakpoint); } }
-		 */
+		IBreakpoint[] breakpoints = manager.getBreakpoints(DSLDebuggerConstants.ID_DSL_DEBUG_MODEL);
+		for (IBreakpoint breakpoint : breakpoints) {
+			if (breakpoint instanceof DSLLineBreakpoint) {
+				breakpointAdded(breakpoint);
+			}
+		}
 	}
 
 	private void initThreads() {
@@ -217,7 +219,7 @@ public class DSLDebugTarget extends PlatformObject implements IDebugTarget, IDeb
 
 				try {
 					if (((IJavaThread) eventSource).isSystemThread() == false) {
-						createThread((IJavaThread)eventSource);
+						createThread((IJavaThread) eventSource);
 					}
 				} catch (DebugException e) {
 					e.printStackTrace();
@@ -227,7 +229,24 @@ public class DSLDebugTarget extends PlatformObject implements IDebugTarget, IDeb
 				assert this.javaDebugTarget == null;
 				this.javaDebugTarget = (IJavaDebugTarget) eventSource;
 			}
+		} else if (event.getKind() == DebugEvent.SUSPEND) {
+			if (eventSource instanceof IJavaThread) {
+				for (DSLThread thread : dslThreads) {
+					if (thread.getJavaThread() == (IJavaThread) eventSource) {
+						thread.fireSuspendEvent(event.getDetail());
+					}
+				}
+			}
+
+		} else {
+			/*
+			 * try { if (eventSource instanceof IJavaThread &&
+			 * ((IJavaThread)eventSource).isSystemThread()) {
+			 * System.err.println("JavaThread send something!"); } } catch
+			 * (DebugException e) { e.printStackTrace(); }
+			 */
 		}
+
 	}
 
 	@Override
@@ -252,7 +271,10 @@ public class DSLDebugTarget extends PlatformObject implements IDebugTarget, IDeb
 
 	@Override
 	public boolean supportsBreakpoint(IBreakpoint breakpoint) {
-		// TODO Auto-generated method stub
-		return false;
+		if (breakpoint instanceof DSLLineBreakpoint) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

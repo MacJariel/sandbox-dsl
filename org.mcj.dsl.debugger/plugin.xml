@@ -13,5 +13,25 @@
             sourcePathComputerId="org.eclipse.jdt.launching.sourceLookup.javaSourcePathComputer">
       </launchConfigurationType>
    </extension>
+   <extension
+         point="org.eclipse.debug.core.breakpoints">
+      <breakpoint
+            class="org.mcj.dsl.debugger.breakpoints.DSLLineBreakpoint"
+            id="org.mcj.dsl.debugger.DSLLineBreakpoint"
+            markerType="org.mcj.dsl.debugger.dslLineMarker"
+            name="DSL Line Breakpoint">
+      </breakpoint>
+   </extension>
+   <extension
+         id="org.mcj.dsl.debugger.dslLineMarker"
+         name="DSLLineMarker"
+         point="org.eclipse.core.resources.markers">
+      <super
+            type="org.eclipse.debug.core.lineBreakpointMarker">
+      </super>
+      <persistent
+            value="true">
+      </persistent>
+   </extension>
 
 </plugin>
