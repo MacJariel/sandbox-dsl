@@ -16,4 +16,5 @@ Export-Package: org.mcj.dsl.debugger,
  org.mcj.dsl.debugger.launch
 Import-Package: org.eclipse.acceleo.traceability,
  org.eclipse.emf.ecore.resource,
- org.eclipse.jdt.debug.core
+ org.eclipse.jdt.debug.core,
+ org.eclipse.xtext.parsetree

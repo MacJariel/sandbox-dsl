@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.eclipse.acceleo.traceability.TraceabilityModel;
 import org.eclipse.core.resources.IMarkerDelta;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.PlatformObject;
 import org.eclipse.debug.core.DebugEvent;
 import org.eclipse.debug.core.DebugException;
@@ -21,6 +22,8 @@ import org.eclipse.jdt.debug.core.IJavaDebugTarget;
 import org.eclipse.jdt.debug.core.IJavaThread;
 import org.mcj.dsl.debugger.DSLDebuggerConstants;
 import org.mcj.dsl.debugger.breakpoints.DSLLineBreakpoint;
+import org.mcj.dsl.debugger.traceability.SimpleMapping;
+import org.mcj.dsl.debugger.traceability.TraceabilityModelHelper;
 
 public class DSLDebugTarget extends PlatformObject implements IDebugTarget, IDebugEventSetListener {
 
@@ -34,7 +37,7 @@ public class DSLDebugTarget extends PlatformObject implements IDebugTarget, IDeb
 
 	private IProcess process;
 
-	// private IJavaThread javaThread;
+	private ArrayList<DSLLineBreakpoint> dslLineBreakpoints;
 
 	private IJavaDebugTarget javaDebugTarget;
 
@@ -54,8 +57,13 @@ public class DSLDebugTarget extends PlatformObject implements IDebugTarget, IDeb
 		initThreads();
 	}
 
+	private IBreakpointManager getBreakpointManager() {
+		return DebugPlugin.getDefault().getBreakpointManager();
+	}
+
 	private void initBreakpoints() {
-		IBreakpointManager manager = DebugPlugin.getDefault().getBreakpointManager();
+		dslLineBreakpoints = new ArrayList<DSLLineBreakpoint>();
+		IBreakpointManager manager = getBreakpointManager();
 		manager.addBreakpointListener(this);
 
 		IBreakpoint[] breakpoints = manager.getBreakpoints(DSLDebuggerConstants.ID_DSL_DEBUG_MODEL);
@@ -131,7 +139,14 @@ public class DSLDebugTarget extends PlatformObject implements IDebugTarget, IDeb
 
 	@Override
 	public void breakpointAdded(IBreakpoint breakpoint) {
-		// TODO Auto-generated method stub
+		if (supportsBreakpoint(breakpoint)) {
+			if (getBreakpointManager().isEnabled()) {
+				DSLLineBreakpoint dslLineBreakpoint = (DSLLineBreakpoint) breakpoint;
+				dslLineBreakpoint.install(this);
+
+				this.dslLineBreakpoints.add(dslLineBreakpoint);
+			}
+		}
 
 	}
 
@@ -276,5 +291,19 @@ public class DSLDebugTarget extends PlatformObject implements IDebugTarget, IDeb
 		} else {
 			return false;
 		}
+	}
+
+	public SimpleMapping getMapping(DSLLineBreakpoint bp) {
+		try {
+			return TraceabilityModelHelper.getMappingToJava(bp.getMarker().getResource(), bp.getLineNumber(),
+					this.traceabilityModel, this.dslProgramModel);
+		} catch (CoreException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public IDebugTarget getJavaDebugTarget() {
+		return javaDebugTarget;
 	}
 }

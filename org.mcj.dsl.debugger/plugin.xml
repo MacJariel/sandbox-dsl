@@ -32,6 +32,12 @@
       <persistent
             value="true">
       </persistent>
+      <attribute
+            name="org.eclipse.debug.core.enabled">
+      </attribute>
+      <attribute
+            name="org.eclipse.debug.core.id">
+      </attribute>
    </extension>
 
 </plugin>
