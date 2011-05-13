@@ -8,9 +8,11 @@ public class SimpleMapping {
 	IResource target;
 
 	int sourceLineNumber;
-	int targetLineNumber;
+	int targetStartLineNumber;
+	int targetEndLineNumber;
 	int targetStartChar;
 	int targetEndChar;
+	
 
 	public IResource getSource() {
 		return source;
@@ -18,10 +20,6 @@ public class SimpleMapping {
 
 	public int getSourceLineNumber() {
 		return sourceLineNumber;
-	}
-
-	public int getTargetLineNumber() {
-		return targetLineNumber;
 	}
 
 	public int getTargetStartChar() {
@@ -34,6 +32,14 @@ public class SimpleMapping {
 
 	public IResource getTarget() {
 		return target;
+	}
+
+	public int getTargetStartLineNumber() {
+		return targetStartLineNumber;
+	}
+
+	public int getTargetEndLineNumber() {
+		return targetEndLineNumber;
 	}
 
 }

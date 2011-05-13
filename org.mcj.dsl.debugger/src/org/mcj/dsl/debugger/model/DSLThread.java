@@ -1,5 +1,7 @@
 package org.mcj.dsl.debugger.model;
 
+import java.util.ArrayList;
+
 import org.eclipse.debug.core.DebugException;
 import org.eclipse.debug.core.model.IBreakpoint;
 import org.eclipse.debug.core.model.IDebugTarget;
@@ -11,9 +13,15 @@ public class DSLThread extends DSLDebugElement implements IThread {
 
 	private IJavaThread javaThread;
 	
+	private ArrayList<DSLStackFrame> stackFrames;
+	
 	public DSLThread(IDebugTarget target, IJavaThread javaThread) {
 		super(target);
 		this.javaThread = javaThread;
+		this.stackFrames = new ArrayList<DSLStackFrame>();
+		
+		// TESTING
+		this.stackFrames.add(new DSLStackFrame(target, this));
 	}
 	
 	public IJavaThread getJavaThread()
@@ -105,14 +113,12 @@ public class DSLThread extends DSLDebugElement implements IThread {
 
 	@Override
 	public IStackFrame[] getStackFrames() throws DebugException {
-		// TODO Auto-generated method stub
-		return null;
+		return stackFrames.toArray(new IStackFrame[stackFrames.size()]); 
 	}
 
 	@Override
 	public boolean hasStackFrames() throws DebugException {
-		// TODO Auto-generated method stub
-		return false;
+		return stackFrames.size() != 0;
 	}
 
 	@Override

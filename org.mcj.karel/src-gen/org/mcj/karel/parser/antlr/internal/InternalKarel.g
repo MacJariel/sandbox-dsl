@@ -551,9 +551,9 @@ ruleUserDefinedCommand returns [EObject current=null]
     }
 (
 (
-		lv_name_2_0=RULE_STRING
+		lv_name_2_0=RULE_ID
 		{
-			createLeafNode(grammarAccess.getUserDefinedCommandAccess().getNameSTRINGTerminalRuleCall_2_0(), "name"); 
+			createLeafNode(grammarAccess.getUserDefinedCommandAccess().getNameIDTerminalRuleCall_2_0(), "name"); 
 		}
 		{
 	        if ($current==null) {
@@ -565,7 +565,7 @@ ruleUserDefinedCommand returns [EObject current=null]
 	       			$current, 
 	       			"name",
 	        		lv_name_2_0, 
-	        		"STRING", 
+	        		"ID", 
 	        		lastConsumedNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);

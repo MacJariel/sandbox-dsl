@@ -18,7 +18,7 @@
 	<target name="post.compile.@dot">
 		<acceleoCompiler 
 			sourceFolders="${target.folder}" 
-			dependencies="">
+			dependencies="${target.folder}/../../org.mcj.karel;">
 		</acceleoCompiler>
 	</target>	
 

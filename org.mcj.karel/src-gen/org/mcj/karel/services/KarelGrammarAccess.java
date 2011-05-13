@@ -228,7 +228,7 @@ public class KarelGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDocDocumentationCommentParserRuleCall_0_0 = (RuleCall)cDocAssignment_0.eContents().get(0);
 		private final Keyword cDEFINECOMMANDKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cNameSTRINGTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
 		private final Keyword cASKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Keyword cBEGINKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cStatementsAssignment_5 = (Assignment)cGroup.eContents().get(5);
@@ -236,10 +236,10 @@ public class KarelGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cENDKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//UserDefinedCommand:
-		//	doc=DocumentationComment? "DEFINE COMMAND" name=STRING "AS" "BEGIN" statements+=Statement* "END";
+		//	doc=DocumentationComment? "DEFINE COMMAND" name=ID "AS" "BEGIN" statements+=Statement* "END";
 		public ParserRule getRule() { return rule; }
 
-		//doc=DocumentationComment? "DEFINE COMMAND" name=STRING "AS" "BEGIN" statements+=Statement* "END"
+		//doc=DocumentationComment? "DEFINE COMMAND" name=ID "AS" "BEGIN" statements+=Statement* "END"
 		public Group getGroup() { return cGroup; }
 
 		//doc=DocumentationComment?
@@ -251,11 +251,11 @@ public class KarelGrammarAccess extends AbstractGrammarElementFinder {
 		//"DEFINE COMMAND"
 		public Keyword getDEFINECOMMANDKeyword_1() { return cDEFINECOMMANDKeyword_1; }
 
-		//name=STRING
+		//name=ID
 		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
 
-		//STRING
-		public RuleCall getNameSTRINGTerminalRuleCall_2_0() { return cNameSTRINGTerminalRuleCall_2_0; }
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_2_0() { return cNameIDTerminalRuleCall_2_0; }
 
 		//"AS"
 		public Keyword getASKeyword_3() { return cASKeyword_3; }
@@ -854,7 +854,7 @@ public class KarelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//UserDefinedCommand:
-	//	doc=DocumentationComment? "DEFINE COMMAND" name=STRING "AS" "BEGIN" statements+=Statement* "END";
+	//	doc=DocumentationComment? "DEFINE COMMAND" name=ID "AS" "BEGIN" statements+=Statement* "END";
 	public UserDefinedCommandElements getUserDefinedCommandAccess() {
 		return (pUserDefinedCommand != null) ? pUserDefinedCommand : (pUserDefinedCommand = new UserDefinedCommandElements());
 	}

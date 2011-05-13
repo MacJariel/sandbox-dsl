@@ -31,7 +31,7 @@ enum HeadingKind:
 
 UserDefinedCommand:
 	(doc=DocumentationComment)?
-	'DEFINE COMMAND' name=STRING 'AS'
+	'DEFINE COMMAND' name=ID 'AS'
 	'BEGIN'
 	(statements+=Statement)*
 	'END';

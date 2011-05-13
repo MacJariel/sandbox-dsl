@@ -1026,11 +1026,11 @@ protected class InitBoardSizeCommand_SemicolonKeyword_4 extends KeywordToken  {
 /************ begin Rule UserDefinedCommand ****************
  *
  * UserDefinedCommand:
- * 	doc=DocumentationComment? "DEFINE COMMAND" name=STRING "AS" "BEGIN" statements+=Statement* "END";
+ * 	doc=DocumentationComment? "DEFINE COMMAND" name=ID "AS" "BEGIN" statements+=Statement* "END";
  *
  **/
 
-// doc=DocumentationComment? "DEFINE COMMAND" name=STRING "AS" "BEGIN" statements+=Statement* "END"
+// doc=DocumentationComment? "DEFINE COMMAND" name=ID "AS" "BEGIN" statements+=Statement* "END"
 protected class UserDefinedCommand_Group extends GroupToken {
 	
 	public UserDefinedCommand_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -1126,7 +1126,7 @@ protected class UserDefinedCommand_DEFINECOMMANDKeyword_1 extends KeywordToken  
 
 }
 
-// name=STRING
+// name=ID
 protected class UserDefinedCommand_NameAssignment_2 extends AssignmentToken  {
 	
 	public UserDefinedCommand_NameAssignment_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -1150,9 +1150,9 @@ protected class UserDefinedCommand_NameAssignment_2 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("name",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("name");
-		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getUserDefinedCommandAccess().getNameSTRINGTerminalRuleCall_2_0(), value, null)) {
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getUserDefinedCommandAccess().getNameIDTerminalRuleCall_2_0(), value, null)) {
 			type = AssignmentType.TERMINAL_RULE_CALL;
-			element = grammarAccess.getUserDefinedCommandAccess().getNameSTRINGTerminalRuleCall_2_0();
+			element = grammarAccess.getUserDefinedCommandAccess().getNameIDTerminalRuleCall_2_0();
 			return obj;
 		}
 		return null;

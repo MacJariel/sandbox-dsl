@@ -1,5 +1,10 @@
 package org.mcj.dsl.debugger.traceability;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
+import java.io.Reader;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -19,6 +24,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.parsetree.AbstractNode;
@@ -35,7 +41,7 @@ public class TraceabilityModelHelper {
 	private static class Region implements Comparable<Region> {
 		int startOffset;
 		int endOffset;
-		
+
 		@Override
 		public int compareTo(Region o) {
 			int result = this.startOffset - o.startOffset;
@@ -64,6 +70,7 @@ public class TraceabilityModelHelper {
 	public static boolean fillMappingToJava(SimpleMapping simpleMapping, TraceabilityModel traceModel,
 			EObject dslProgramModel) {
 		EObject eo = getElementForLine(simpleMapping.sourceLineNumber, dslProgramModel);
+		// CompositeNode cNode1 = getCompositeNodeForEObject(eo);
 		InputElement associatedInputElement = getAssociatedInputElement(eo, traceModel);
 
 		if (associatedInputElement != null) {
@@ -72,6 +79,8 @@ public class TraceabilityModelHelper {
 				// code. These regions should be merged to one.
 				List<Region> regions = new ArrayList<Region>();
 				for (GeneratedText gText : gFile.getGeneratedRegions()) {
+					// CompositeNode cNode2 = getCompositeNodeForEObject(gText.getSourceElement());
+					// if (equals(cNode1, cNode2)) {
 					if (gText.getSourceElement() == associatedInputElement) {
 						Region region = new Region();
 						region.startOffset = gText.getStartOffset();
@@ -96,10 +105,11 @@ public class TraceabilityModelHelper {
 				}
 				if (regions.size() > 0) {
 					Collections.sort(regions);
-					// TODO: This does not consider holes between regions, but it is sufficient for now.
+					// TODO: This does not consider holes between regions, but
+					// it is sufficient for now.
 					simpleMapping.targetStartChar = regions.get(0).startOffset;
 					simpleMapping.targetEndChar = regions.get(regions.size() - 1).endOffset;
-					
+
 					try {
 						URI targetURI = new URI("file", gFile.getPath(), "");
 						IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
@@ -110,11 +120,50 @@ public class TraceabilityModelHelper {
 						}
 						if (files.length != 0) {
 							simpleMapping.target = files[0];
-							return true;
+
 						}
 					} catch (URISyntaxException e) {
 						e.printStackTrace();
+						return false;
 					}
+
+					IFile targetFile = (IFile) simpleMapping.target;
+					InputStream is = null;
+					try {
+						try {
+							// TODO: make sure that getContents(true) is OK
+							is = targetFile.getContents(true);
+							LineNumberReader reader = new LineNumberReader(new InputStreamReader(is));
+							reader.skip(simpleMapping.targetStartChar);
+							simpleMapping.targetStartLineNumber = -1;
+							simpleMapping.targetEndLineNumber = -1;
+							
+							for (int i = simpleMapping.targetStartChar; i != simpleMapping.targetEndChar; ++i)
+							{
+								// TODO: The LineNumberReader.read() can read \r\n at once. This can lead into
+								// wrong offset on windows. Using the second read() method may help.  
+								int aChar = reader.read();
+								if (Character.isWhitespace(aChar))
+									continue;
+								if (simpleMapping.targetStartLineNumber == -1)
+									simpleMapping.targetStartLineNumber = reader.getLineNumber() + 1;
+								
+								simpleMapping.targetEndLineNumber = reader.getLineNumber() + 1;
+								//System.out.println(reader.getLineNumber() + ": '" + (char)aChar + "'");
+							}
+							System.out.println("Lines: " + simpleMapping.targetStartLineNumber + " - " + simpleMapping.targetEndLineNumber);
+						} finally {
+							if (is != null) {
+								is.close();
+							}
+						}
+					} catch (CoreException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+
+					return true;
 
 				}
 			}

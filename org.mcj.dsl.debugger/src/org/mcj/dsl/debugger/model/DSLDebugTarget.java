@@ -38,7 +38,7 @@ public class DSLDebugTarget extends PlatformObject implements IDebugTarget, IDeb
 	private IProcess process;
 
 	private ArrayList<DSLLineBreakpoint> dslLineBreakpoints;
-
+	
 	private IJavaDebugTarget javaDebugTarget;
 
 	public DSLDebugTarget(ILaunch launch, TraceabilityModel traceabilityModel, EObject dslProgramModel) {
@@ -57,6 +57,11 @@ public class DSLDebugTarget extends PlatformObject implements IDebugTarget, IDeb
 		initThreads();
 	}
 
+	private void deinitialize() {
+		deinitBreakpoints();
+		deinitThreads();
+	}
+	
 	private IBreakpointManager getBreakpointManager() {
 		return DebugPlugin.getDefault().getBreakpointManager();
 	}
@@ -73,9 +78,17 @@ public class DSLDebugTarget extends PlatformObject implements IDebugTarget, IDeb
 			}
 		}
 	}
+	
+	private void deinitBreakpoints() {
+		getBreakpointManager().removeBreakpointListener(this);
+	}
 
 	private void initThreads() {
 		dslThreads = new ArrayList<DSLThread>();
+	}
+	
+	private void deinitThreads() {
+		
 	}
 
 	@Override
@@ -100,7 +113,8 @@ public class DSLDebugTarget extends PlatformObject implements IDebugTarget, IDeb
 
 	@Override
 	public boolean isTerminated() {
-		return javaDebugTarget != null ? javaDebugTarget.isTerminated() : false;
+		return true;
+		//return javaDebugTarget != null ? javaDebugTarget.isTerminated() : false;
 	}
 
 	@Override
@@ -226,12 +240,29 @@ public class DSLDebugTarget extends PlatformObject implements IDebugTarget, IDeb
 		System.err.println(event);
 
 		Object eventSource = event.getSource();
-		if (event.getKind() == DebugEvent.CREATE) {
-			if (eventSource instanceof IProcess) {
+		if (eventSource instanceof IJavaDebugTarget)
+		{
+			switch (event.getKind()) {
+			case DebugEvent.CREATE: // Register GPL DebugTarget				
+				assert this.javaDebugTarget == null;
+				this.javaDebugTarget = (IJavaDebugTarget) eventSource;
+				break;
+			case DebugEvent.TERMINATE: 
+				deinitialize();
+				break;
+			}			
+		}
+		else if (eventSource instanceof IProcess) {
+			switch (event.getKind()) {
+			case DebugEvent.CREATE:
 				assert this.process == null;
 				this.process = (IProcess) eventSource;
-			} else if (eventSource instanceof IJavaThread) {
-
+				break;
+			}
+		}
+		else if (eventSource instanceof IJavaThread) {
+			switch (event.getKind()) {
+			case DebugEvent.CREATE:
 				try {
 					if (((IJavaThread) eventSource).isSystemThread() == false) {
 						createThread((IJavaThread) eventSource);
@@ -239,29 +270,16 @@ public class DSLDebugTarget extends PlatformObject implements IDebugTarget, IDeb
 				} catch (DebugException e) {
 					e.printStackTrace();
 				}
-
-			} else if (eventSource instanceof IJavaDebugTarget) {
-				assert this.javaDebugTarget == null;
-				this.javaDebugTarget = (IJavaDebugTarget) eventSource;
-			}
-		} else if (event.getKind() == DebugEvent.SUSPEND) {
-			if (eventSource instanceof IJavaThread) {
+				break;
+			case DebugEvent.SUSPEND:
 				for (DSLThread thread : dslThreads) {
 					if (thread.getJavaThread() == (IJavaThread) eventSource) {
 						thread.fireSuspendEvent(event.getDetail());
 					}
 				}
+				break;
 			}
-
-		} else {
-			/*
-			 * try { if (eventSource instanceof IJavaThread &&
-			 * ((IJavaThread)eventSource).isSystemThread()) {
-			 * System.err.println("JavaThread send something!"); } } catch
-			 * (DebugException e) { e.printStackTrace(); }
-			 */
 		}
-
 	}
 
 	@Override

@@ -69,7 +69,7 @@ public class DSLLineBreakpoint extends LineBreakpoint {
 				// typeName should be the full class name in the target file
 				String typeName = mapping.getTarget().getFullPath().removeFileExtension().removeFirstSegments(2)
 						.toOSString().replace('/', '.');
-				int lineNumber = 12; //mapping.getTargetLineNumber();
+				int lineNumber = mapping.getTargetStartLineNumber();
 
 				createGplBreakpoint(mapping.getTarget(), typeName, lineNumber, mapping.getTargetStartChar(),
 						mapping.getTargetEndChar());
@@ -96,9 +96,10 @@ public class DSLLineBreakpoint extends LineBreakpoint {
 
 	private void createGplBreakpoint(IResource resource, String typeName, int lineNumber, int charStart, int charEnd)
 			throws CoreException {
-		// TODO: create only if not exist
-
-		this.gplBreakpoint = JDIDebugModel.createLineBreakpoint(resource, typeName, lineNumber, charStart, charEnd, 0,
+		if (this.gplBreakpoint == null || !this.gplBreakpoint.isRegistered())
+		{
+			this.gplBreakpoint = JDIDebugModel.createLineBreakpoint(resource, typeName, lineNumber, charStart, charEnd, 0,
 				true, null);
+		}
 	}
 }

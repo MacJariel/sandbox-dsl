@@ -109,9 +109,7 @@ public class KarelProgramImpl implements KarelProgram<KarelTheRobot> {
 		KarelTheRobot karel = engine.getKarel();
 		
 		// TODO put here checks for hitting the wall and 
-		[for (st : Statement | program.statements)]
-			[st.generateStatement('karel') /]								
-		[/for]	
+		[for (st : Statement | program.statements)][st.generateStatement('karel') /][/for]	
 	}
 }	
 [/file]	

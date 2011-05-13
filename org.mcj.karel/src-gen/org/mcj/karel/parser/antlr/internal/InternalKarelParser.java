@@ -25,10 +25,10 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalKarelParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_STRING", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'BEGIN-PROGRAM'", "'END-PROGRAM'", "'BEGIN-INIT'", "'END-INIT'", "'position'", "','", "';'", "'heading'", "'boardSize'", "'DEFINE COMMAND'", "'AS'", "'BEGIN'", "'END'", "'BEGIN-MAIN'", "'END-MAIN'", "'IF'", "'('", "')'", "'{'", "'}'", "'ELSE'", "'ITERATE'", "'TIMES'", "'WHILE'", "'@('", "'!'", "'NORTH'", "'SOUTH'", "'WEST'", "'EAST'", "'move'", "'turn'", "'turnOn'", "'turnOff'", "'put'", "'get'", "'WALL_AHEAD'", "'MARKED_PLACE'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_ID", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'BEGIN-PROGRAM'", "'END-PROGRAM'", "'BEGIN-INIT'", "'END-INIT'", "'position'", "','", "';'", "'heading'", "'boardSize'", "'DEFINE COMMAND'", "'AS'", "'BEGIN'", "'END'", "'BEGIN-MAIN'", "'END-MAIN'", "'IF'", "'('", "')'", "'{'", "'}'", "'ELSE'", "'ITERATE'", "'TIMES'", "'WHILE'", "'@('", "'!'", "'NORTH'", "'SOUTH'", "'WEST'", "'EAST'", "'move'", "'turn'", "'turnOn'", "'turnOff'", "'put'", "'get'", "'WALL_AHEAD'", "'MARKED_PLACE'"
     };
-    public static final int RULE_ID=6;
-    public static final int RULE_STRING=5;
+    public static final int RULE_ID=5;
+    public static final int RULE_STRING=6;
     public static final int RULE_ANY_OTHER=10;
     public static final int RULE_INT=4;
     public static final int RULE_WS=9;
@@ -1047,7 +1047,7 @@ public class InternalKarelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleUserDefinedCommand
-    // ../org.mcj.karel/src-gen/org/mcj/karel/parser/antlr/internal/InternalKarel.g:518:1: ruleUserDefinedCommand returns [EObject current=null] : ( ( (lv_doc_0_0= ruleDocumentationComment ) )? 'DEFINE COMMAND' ( (lv_name_2_0= RULE_STRING ) ) 'AS' 'BEGIN' ( (lv_statements_5_0= ruleStatement ) )* 'END' ) ;
+    // ../org.mcj.karel/src-gen/org/mcj/karel/parser/antlr/internal/InternalKarel.g:518:1: ruleUserDefinedCommand returns [EObject current=null] : ( ( (lv_doc_0_0= ruleDocumentationComment ) )? 'DEFINE COMMAND' ( (lv_name_2_0= RULE_ID ) ) 'AS' 'BEGIN' ( (lv_statements_5_0= ruleStatement ) )* 'END' ) ;
     public final EObject ruleUserDefinedCommand() throws RecognitionException {
         EObject current = null;
 
@@ -1060,11 +1060,11 @@ public class InternalKarelParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.mcj.karel/src-gen/org/mcj/karel/parser/antlr/internal/InternalKarel.g:523:6: ( ( ( (lv_doc_0_0= ruleDocumentationComment ) )? 'DEFINE COMMAND' ( (lv_name_2_0= RULE_STRING ) ) 'AS' 'BEGIN' ( (lv_statements_5_0= ruleStatement ) )* 'END' ) )
-            // ../org.mcj.karel/src-gen/org/mcj/karel/parser/antlr/internal/InternalKarel.g:524:1: ( ( (lv_doc_0_0= ruleDocumentationComment ) )? 'DEFINE COMMAND' ( (lv_name_2_0= RULE_STRING ) ) 'AS' 'BEGIN' ( (lv_statements_5_0= ruleStatement ) )* 'END' )
+            // ../org.mcj.karel/src-gen/org/mcj/karel/parser/antlr/internal/InternalKarel.g:523:6: ( ( ( (lv_doc_0_0= ruleDocumentationComment ) )? 'DEFINE COMMAND' ( (lv_name_2_0= RULE_ID ) ) 'AS' 'BEGIN' ( (lv_statements_5_0= ruleStatement ) )* 'END' ) )
+            // ../org.mcj.karel/src-gen/org/mcj/karel/parser/antlr/internal/InternalKarel.g:524:1: ( ( (lv_doc_0_0= ruleDocumentationComment ) )? 'DEFINE COMMAND' ( (lv_name_2_0= RULE_ID ) ) 'AS' 'BEGIN' ( (lv_statements_5_0= ruleStatement ) )* 'END' )
             {
-            // ../org.mcj.karel/src-gen/org/mcj/karel/parser/antlr/internal/InternalKarel.g:524:1: ( ( (lv_doc_0_0= ruleDocumentationComment ) )? 'DEFINE COMMAND' ( (lv_name_2_0= RULE_STRING ) ) 'AS' 'BEGIN' ( (lv_statements_5_0= ruleStatement ) )* 'END' )
-            // ../org.mcj.karel/src-gen/org/mcj/karel/parser/antlr/internal/InternalKarel.g:524:2: ( (lv_doc_0_0= ruleDocumentationComment ) )? 'DEFINE COMMAND' ( (lv_name_2_0= RULE_STRING ) ) 'AS' 'BEGIN' ( (lv_statements_5_0= ruleStatement ) )* 'END'
+            // ../org.mcj.karel/src-gen/org/mcj/karel/parser/antlr/internal/InternalKarel.g:524:1: ( ( (lv_doc_0_0= ruleDocumentationComment ) )? 'DEFINE COMMAND' ( (lv_name_2_0= RULE_ID ) ) 'AS' 'BEGIN' ( (lv_statements_5_0= ruleStatement ) )* 'END' )
+            // ../org.mcj.karel/src-gen/org/mcj/karel/parser/antlr/internal/InternalKarel.g:524:2: ( (lv_doc_0_0= ruleDocumentationComment ) )? 'DEFINE COMMAND' ( (lv_name_2_0= RULE_ID ) ) 'AS' 'BEGIN' ( (lv_statements_5_0= ruleStatement ) )* 'END'
             {
             // ../org.mcj.karel/src-gen/org/mcj/karel/parser/antlr/internal/InternalKarel.g:524:2: ( (lv_doc_0_0= ruleDocumentationComment ) )?
             int alt5=2;
@@ -1117,16 +1117,16 @@ public class InternalKarelParser extends AbstractInternalAntlrParser {
 
                     createLeafNode(grammarAccess.getUserDefinedCommandAccess().getDEFINECOMMANDKeyword_1(), null); 
                 
-            // ../org.mcj.karel/src-gen/org/mcj/karel/parser/antlr/internal/InternalKarel.g:552:1: ( (lv_name_2_0= RULE_STRING ) )
-            // ../org.mcj.karel/src-gen/org/mcj/karel/parser/antlr/internal/InternalKarel.g:553:1: (lv_name_2_0= RULE_STRING )
+            // ../org.mcj.karel/src-gen/org/mcj/karel/parser/antlr/internal/InternalKarel.g:552:1: ( (lv_name_2_0= RULE_ID ) )
+            // ../org.mcj.karel/src-gen/org/mcj/karel/parser/antlr/internal/InternalKarel.g:553:1: (lv_name_2_0= RULE_ID )
             {
-            // ../org.mcj.karel/src-gen/org/mcj/karel/parser/antlr/internal/InternalKarel.g:553:1: (lv_name_2_0= RULE_STRING )
-            // ../org.mcj.karel/src-gen/org/mcj/karel/parser/antlr/internal/InternalKarel.g:554:3: lv_name_2_0= RULE_STRING
+            // ../org.mcj.karel/src-gen/org/mcj/karel/parser/antlr/internal/InternalKarel.g:553:1: (lv_name_2_0= RULE_ID )
+            // ../org.mcj.karel/src-gen/org/mcj/karel/parser/antlr/internal/InternalKarel.g:554:3: lv_name_2_0= RULE_ID
             {
             lv_name_2_0=(Token)input.LT(1);
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleUserDefinedCommand976); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleUserDefinedCommand976); 
 
-            			createLeafNode(grammarAccess.getUserDefinedCommandAccess().getNameSTRINGTerminalRuleCall_2_0(), "name"); 
+            			createLeafNode(grammarAccess.getUserDefinedCommandAccess().getNameIDTerminalRuleCall_2_0(), "name"); 
             		
 
             	        if (current==null) {
@@ -1138,7 +1138,7 @@ public class InternalKarelParser extends AbstractInternalAntlrParser {
             	       			current, 
             	       			"name",
             	        		lv_name_2_0, 
-            	        		"STRING", 
+            	        		"ID", 
             	        		lastConsumedNode);
             	        } catch (ValueConverterException vce) {
             				handleValueConverterException(vce);
@@ -3090,15 +3090,15 @@ public class InternalKarelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_EOF_in_entryRuleUserDefinedCommand902 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleDocumentationComment_in_ruleUserDefinedCommand948 = new BitSet(new long[]{0x0000000000100000L});
     public static final BitSet FOLLOW_20_in_ruleUserDefinedCommand959 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleUserDefinedCommand976 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleUserDefinedCommand976 = new BitSet(new long[]{0x0000000000200000L});
     public static final BitSet FOLLOW_21_in_ruleUserDefinedCommand991 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_22_in_ruleUserDefinedCommand1001 = new BitSet(new long[]{0x00007E0504800040L});
-    public static final BitSet FOLLOW_ruleStatement_in_ruleUserDefinedCommand1022 = new BitSet(new long[]{0x00007E0504800040L});
+    public static final BitSet FOLLOW_22_in_ruleUserDefinedCommand1001 = new BitSet(new long[]{0x00007E0504800020L});
+    public static final BitSet FOLLOW_ruleStatement_in_ruleUserDefinedCommand1022 = new BitSet(new long[]{0x00007E0504800020L});
     public static final BitSet FOLLOW_23_in_ruleUserDefinedCommand1033 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleMain_in_entryRuleMain1069 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleMain1079 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_ruleMain1123 = new BitSet(new long[]{0x00007E0506000040L});
-    public static final BitSet FOLLOW_ruleStatement_in_ruleMain1144 = new BitSet(new long[]{0x00007E0506000040L});
+    public static final BitSet FOLLOW_24_in_ruleMain1123 = new BitSet(new long[]{0x00007E0506000020L});
+    public static final BitSet FOLLOW_ruleStatement_in_ruleMain1144 = new BitSet(new long[]{0x00007E0506000020L});
     public static final BitSet FOLLOW_25_in_ruleMain1155 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleStatement_in_entryRuleStatement1191 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleStatement1201 = new BitSet(new long[]{0x0000000000000002L});
@@ -3117,19 +3117,19 @@ public class InternalKarelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_27_in_ruleIfStatement1545 = new BitSet(new long[]{0x0000001000000000L});
     public static final BitSet FOLLOW_ruleConditionExpr_in_ruleIfStatement1566 = new BitSet(new long[]{0x0000000010000000L});
     public static final BitSet FOLLOW_28_in_ruleIfStatement1576 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_ruleIfStatement1586 = new BitSet(new long[]{0x00007E0544000040L});
-    public static final BitSet FOLLOW_ruleStatement_in_ruleIfStatement1607 = new BitSet(new long[]{0x00007E0544000040L});
+    public static final BitSet FOLLOW_29_in_ruleIfStatement1586 = new BitSet(new long[]{0x00007E0544000020L});
+    public static final BitSet FOLLOW_ruleStatement_in_ruleIfStatement1607 = new BitSet(new long[]{0x00007E0544000020L});
     public static final BitSet FOLLOW_30_in_ruleIfStatement1618 = new BitSet(new long[]{0x0000000080000002L});
     public static final BitSet FOLLOW_31_in_ruleIfStatement1629 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_ruleIfStatement1639 = new BitSet(new long[]{0x00007E0544000040L});
-    public static final BitSet FOLLOW_ruleStatement_in_ruleIfStatement1660 = new BitSet(new long[]{0x00007E0544000040L});
+    public static final BitSet FOLLOW_29_in_ruleIfStatement1639 = new BitSet(new long[]{0x00007E0544000020L});
+    public static final BitSet FOLLOW_ruleStatement_in_ruleIfStatement1660 = new BitSet(new long[]{0x00007E0544000020L});
     public static final BitSet FOLLOW_30_in_ruleIfStatement1671 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleIterateStatement_in_entryRuleIterateStatement1709 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleIterateStatement1719 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_32_in_ruleIterateStatement1754 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_RULE_INT_in_ruleIterateStatement1771 = new BitSet(new long[]{0x0000000200000000L});
     public static final BitSet FOLLOW_33_in_ruleIterateStatement1786 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_ruleIterateStatement1796 = new BitSet(new long[]{0x00007E0504000040L});
+    public static final BitSet FOLLOW_29_in_ruleIterateStatement1796 = new BitSet(new long[]{0x00007E0504000020L});
     public static final BitSet FOLLOW_ruleStatement_in_ruleIterateStatement1817 = new BitSet(new long[]{0x0000000040000000L});
     public static final BitSet FOLLOW_30_in_ruleIterateStatement1827 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleWhileStatement_in_entryRuleWhileStatement1863 = new BitSet(new long[]{0x0000000000000000L});
@@ -3138,12 +3138,12 @@ public class InternalKarelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_27_in_ruleWhileStatement1918 = new BitSet(new long[]{0x0000001000000000L});
     public static final BitSet FOLLOW_ruleConditionExpr_in_ruleWhileStatement1939 = new BitSet(new long[]{0x0000000010000000L});
     public static final BitSet FOLLOW_28_in_ruleWhileStatement1949 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_ruleWhileStatement1959 = new BitSet(new long[]{0x00007E0504000040L});
+    public static final BitSet FOLLOW_29_in_ruleWhileStatement1959 = new BitSet(new long[]{0x00007E0504000020L});
     public static final BitSet FOLLOW_ruleStatement_in_ruleWhileStatement1980 = new BitSet(new long[]{0x0000000040000000L});
     public static final BitSet FOLLOW_30_in_ruleWhileStatement1990 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleDocumentationComment_in_entryRuleDocumentationComment2026 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleDocumentationComment2036 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_ruleDocumentationComment2071 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_35_in_ruleDocumentationComment2071 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_RULE_STRING_in_ruleDocumentationComment2088 = new BitSet(new long[]{0x0000000010000000L});
     public static final BitSet FOLLOW_28_in_ruleDocumentationComment2103 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleCommandStatement_in_entryRuleCommandStatement2139 = new BitSet(new long[]{0x0000000000000000L});
